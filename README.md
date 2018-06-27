@@ -5,9 +5,10 @@ To download the latest version, go to build folder.
 
 ## Todo
 
-Add custom notification with only the app icon
-[x] checked Show a badge on icon when a message is unread
-[x] checked Add button to clear cache an disconnect account
+- [ ] Add custom notification with only the app icon
+- [x] Show a badge on icon when a message is unread
+- [x] Add button to clear cache an disconnect account
+- [x] Push version for Windows
 
 ## Author
 
