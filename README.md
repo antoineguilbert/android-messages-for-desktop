@@ -13,7 +13,7 @@ To download the latest version, go to [release page](https://github.com/antoineg
 
 ## Author
 
-**Antoine Guilbert** - [wwww.antoineguilbert.fr](https://wwww.antoineguilbert.fr)
+**Antoine Guilbert** - [www.antoineguilbert.fr](https://wwww.antoineguilbert.fr)
 
 ## Disclamer
 
