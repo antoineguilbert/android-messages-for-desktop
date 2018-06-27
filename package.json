@@ -3,7 +3,7 @@
   "productName": "Android Messages",
   "appId": "com.android.messages",
   "version": "1.1.0",
-  "description": "Just a simple project made with electron JS to show Android Messages from Google in a macOS app with notifications.",
+  "description": "Just a simple project made with electron JS to show Android Messages from Google in a app with notifications.",
   "main": "main.js",
   "scripts": {
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --out=build/macos/ --icon=icons/mac/icon.icns --prune=true",
@@ -16,7 +16,7 @@
   },
   "author": "Antoine Guilbert",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/antoineguilbert/android-messages-macos#readme",
+  "homepage": "https://github.com/antoineguilbert/android-messages-for-desktop/blob/master/README.md",
   "devDependencies": {
     "electron": "^2.0.3",
     "electron-winstaller": "^2.6.4"
