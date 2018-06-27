@@ -1,0 +1,5 @@
+# Excluse DS Store
+.DS_Store
+
+#Exclude modules node
+node_modules/
