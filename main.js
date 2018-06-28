@@ -1,7 +1,3 @@
-//Customize for Windows
-const setupEvents = require('./installers/setupEvents')
-if (setupEvents.handleSquirrelEvent()) {return;}
-
 //Constants
 const electron = require('electron');
 const path = require('path');
