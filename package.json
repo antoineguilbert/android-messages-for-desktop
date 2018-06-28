@@ -21,7 +21,7 @@
     "appId": "com.antoineguilbert.android-messages",
     "mac": {
       "category": "public.app-category.social-networking",
-			"target": "dmg"
+      "target": "dmg"
     },
     "win": {
       "target": "nsis"
@@ -33,16 +33,16 @@
     "linux": {
       "target": "AppImage"
     },
-    "publish": ["github"]
+    "publish": [
+      "github"
+    ]
   },
   "devDependencies": {
     "electron": "^2.0.3",
-    "electron-builder": "^20.17.0",
-    "electron-winstaller": "^2.6.4"
+    "electron-builder": "^20.17.1"
   },
   "dependencies": {
     "electron-context-menu": "^0.10.0",
-    "electron-packager": "^12.1.0",
     "electron-window-state": "^4.1.1"
   }
 }
