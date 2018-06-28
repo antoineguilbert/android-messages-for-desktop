@@ -2,6 +2,8 @@
 const electron = require('electron');
 const path = require('path');
 const url = require('url');
+const notifier = require('node-notifier');
+const {ipcMain} = require('electron')
 const windowStateKeeper = require('electron-window-state');
 const {app, BrowserWindow, Menu, MenuItem} = electron;
 
@@ -21,8 +23,39 @@ function createWindow () {
     width: mainWindowState.width,
     height: mainWindowState.height,
     title: app.getName(),
-    icon: path.join(__dirname, '/icons/png/512.png')
-  }
+		icon: path.join(__dirname, '/icons/png/512.png'),
+		webPreferences: {
+			// Load `electron-notification-shim` in rendering view.
+			preload: path.join(__dirname, 'browser.js')
+		}
+	}
+
+	ipcMain.on('notification-shim', (e, msg) => {
+		console.log(JSON.stringify(msg));
+		console.log(`Title: ${msg.title}, Body: ${msg.options.body}`);
+		notifier.notify(
+			{
+				title: msg.title,
+				subtitle: "",
+				message:  msg.options.body,
+				sound: false, // Case Sensitive string for location of sound file, or use one of macOS' native sounds (see below)
+				icon: 'Terminal Icon', // Absolute Path to Triggering Icon
+				// contentImage: "", // Absolute Path to Attached Image (Content Image)
+				// open: void 0, // URL to open on Click
+				// wait: false, // Wait for User Action against Notification or times out. Same as timeout = 5 seconds
+
+				// New in latest version. See `example/macInput.js` for usage
+				// timeout: 5, // Takes precedence over wait if both are defined.
+				closeLabel: "Close", // String. Label for cancel button
+				actions: ["Reply", "Mark as read"], // String | Array<String>. Action label or list of labels in case of dropdown
+				// dropdownLabel: void 0, // String. Label to be used if multiple actions
+				reply: true // Boolean. If notification should take input. Value passed as third argument in callback and event emitter.
+			},
+			function(error, response, metadata) {
+				console.log(response, metadata);
+			}
+		);
+	});
 
   mainWindow = new BrowserWindow(windowOptions)
   //mainWindow.webContents.openDevTools();
@@ -32,7 +65,11 @@ function createWindow () {
    pathname: path.join('messages.android.com'),
    protocol: 'https:',
    slashes: true
-  }))
+	}))
+
+	mainWindow.webContents.on('did-finish-load', () => {
+		mainWindow.webContents.executeJavaScript('new Notification("Hello!", {body: "Notification world!"})');
+	});
 
   //When a SMS arrived in the app, change the badge
   if (process.platform === 'darwin') {
