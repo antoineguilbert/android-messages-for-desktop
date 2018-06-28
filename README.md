@@ -4,6 +4,9 @@ Just a simple project made with electron JS to show Android Messages from Google
 
 To download the latest version, go to [release page](https://github.com/antoineguilbert/android-messages-for-desktop/releases).
 
+![android-messages-macos](https://user-images.githubusercontent.com/16510381/42050509-71cc3c3a-7b09-11e8-8af2-419593ac033a.jpg)
+
+
 ## Todo
 
 - [ ] Add custom notification with only the app icon
