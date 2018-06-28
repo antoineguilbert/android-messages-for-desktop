@@ -1,7 +1,7 @@
-# Excluse DS Store
+# Exclude DS Store
 .DS_Store
 
-#Exclude modules node
+# Exclude modules node
 node_modules/
 
 yarn\.lock
