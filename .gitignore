@@ -1,8 +1,9 @@
-# Excluse DS Store
+# Exclude DS Store
 .DS_Store
 
-#Exclude modules node
+# Exclude modules node
 node_modules/
 
-#Exclude modules node
-build/
+yarn\.lock
+dist/*
+*.log

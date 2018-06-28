@@ -1,32 +1,48 @@
 {
   "name": "android-messages",
   "productName": "Android Messages",
-  "appId": "com.android.messages",
-  "version": "1.1.0",
+  "appId": "com.antoineguilbert.android-messages",
+  "version": "1.1.1",
   "description": "Just a simple project made with electron JS to show Android Messages from Google in a app with notifications.",
   "main": "main.js",
   "scripts": {
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --out=build/macos/ --icon=icons/mac/icon.icns --prune=true",
-    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=icons/win/icon.ico --prune=true --out=build/windows/ --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='Android Messages'",
-    "package-linux": "electron-packager . android-messages-app --overwrite --asar=true --platform=linux --arch=x64 --icon=icons/png/1024x1024.png --prune=true --out=build"
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/antoineguilbert/android-messages-for-desktop.git"
   },
   "author": "Antoine Guilbert",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/antoineguilbert/android-messages-for-desktop/blob/master/README.md",
+  "build": {
+    "appId": "com.antoineguilbert.android-messages",
+    "mac": {
+      "category": "public.app-category.social-networking",
+			"target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "target": "AppImage"
+    },
+    "publish": ["github"]
+  },
   "devDependencies": {
     "electron": "^2.0.3",
+    "electron-builder": "^20.17.0",
     "electron-winstaller": "^2.6.4"
   },
   "dependencies": {
     "electron-context-menu": "^0.10.0",
     "electron-packager": "^12.1.0",
     "electron-window-state": "^4.1.1"
-  },
-  "directories": {
-    "buildResources ": "icons"
   }
 }
