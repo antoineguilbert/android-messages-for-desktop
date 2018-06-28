@@ -83,7 +83,7 @@ function createMenu (){
         {label: i18n.__('Disconnect account'), click: function click() {clearAppCache(); }},
         {type: 'separator'},
         {label: i18n.__('Hide')+' '+name,role: 'hide'},
-        {label: i18n.__('Hider others'),role: 'hideothers'},
+        {label: i18n.__('Hide others'),role: 'hideothers'},
         {label: i18n.__('Unhide'),role: 'unhide'},
         {type: 'separator'},
         {label: i18n.__('Quit'),role: 'quit'}
