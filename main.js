@@ -26,7 +26,6 @@ function createWindow () {
 
   mainWindow = new BrowserWindow(windowOptions)
   //mainWindow.webContents.openDevTools();
-  //mainWindow.webContents.executeJavaScript("var elements = document.getElementsByTagName('link'); while (elements[0]) elements[0].parentNode.removeChild(elements[0])");
 
   mainWindow.loadURL(url.format({
    pathname: path.join('messages.android.com'),
@@ -55,19 +54,21 @@ function createWindow () {
 
 //Creating the menu
 function createMenu (){
+  var i18n = new(require('./translations/i18n'));
+
   const template = [
     {
-    label: 'Edition',
+    label: i18n.__('Edit'),
     submenu: [
-      {label:'Copier',role: 'copy'},
-      {label:'Coller',role: 'paste'},
-      {label:'Tout sélectionner',role: 'selectall'},
+      {label: i18n.__('Copy'),role: 'copy'},
+      {label: i18n.__('Paste'),role: 'paste'},
+      {label: i18n.__('Select all'),role: 'selectall'},
       {type: 'separator'},
-      {label:'Recharger',accelerator: 'CmdOrCtrl+R',click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}},
+      {label: i18n.__('Reload'),accelerator: 'CmdOrCtrl+R',click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}},
       ]
     },
     {
-      label: 'Fenêtre',
+      label: i18n.__('Window'),
       role: 'window'
     }
   ]
@@ -77,23 +78,23 @@ function createMenu (){
     template.unshift({
       label: name,
       submenu: [
-        {label:'À propos',role: 'about'},
+        {label: i18n.__('About'),role: 'about'},
         {type: 'separator'},
-        {label:'Déconnecter le compte', click: function click() {clearAppCache(); }},
+        {label: i18n.__('Disconnect account'), click: function click() {clearAppCache(); }},
         {type: 'separator'},
-        {label:'Masquer '+name,role: 'hide'},
-        {label:'Masquer les autres',role: 'hideothers'},
-        {label:'Tout afficher',role: 'unhide'},
+        {label: i18n.__('Hide')+' '+name,role: 'hide'},
+        {label: i18n.__('Hider others'),role: 'hideothers'},
+        {label: i18n.__('Unhide'),role: 'unhide'},
         {type: 'separator'},
-        {label:'Quitter',role: 'quit'}
+        {label: i18n.__('Quit'),role: 'quit'}
       ]
     })
 
     template[1].submenu.push()
 
     template[2].submenu = [
-      {label: 'Réduire',accelerator: 'CmdOrCtrl+M',role: 'minimize'},
-      {label: 'Agrandir',role: 'zoom'}
+      {label: i18n.__('Minimize'),accelerator: 'CmdOrCtrl+M',role: 'minimize'},
+      {label: i18n.__('Zoom'),role: 'zoom'}
     ]
   }
 
