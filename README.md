@@ -14,6 +14,11 @@ To download the latest version, go to [release page](https://github.com/antoineg
 - [x] Add button to clear cache an disconnect account
 - [x] Push version for Windows
 
+## FAQ
+The AppImage file is not working!
+> You need to make it executable by running the following command: `chmod +x yourappimagefile.AppImage`
+You can then execute it
+
 ## Author
 
 **Antoine Guilbert** - [www.antoineguilbert.fr](https://www.antoineguilbert.fr)
