@@ -3,7 +3,7 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 const windowStateKeeper = require('electron-window-state');
-const {app, BrowserWindow, Menu, MenuItem} = electron;
+const {app, BrowserWindow, Menu } = electron;
 
 let mainWindow
 
@@ -44,6 +44,18 @@ function createWindow () {
       }
     });
   }
+  // On windows we do a taskbar flash, to inform the user something new happened. Badge on windows seems to not be supported bei electron atm.
+  if (process.platform === 'win32') {
+    //mainWindow.once('focus', function () { mainWindow.flashFrame(false); });
+    mainWindow.on('page-title-updated', function (e, title) {
+      var messages = countMessages(title);
+      if (messages) {
+        mainWindow.flashFrame(true);
+      } else {
+        mainWindow.flashFrame(false);
+      }
+    });
+  }
 
   mainWindow.on('closed', () => {
    mainWindow = null
@@ -64,12 +76,16 @@ function createMenu (){
       {label: i18n.__('Paste'),role: 'paste'},
       {label: i18n.__('Select all'),role: 'selectall'},
       {type: 'separator'},
-      {label: i18n.__('Reload'),accelerator: 'CmdOrCtrl+R',click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}},
+      {label: i18n.__('Reload'),accelerator: 'CmdOrCtrl+R', click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}},
       ]
     },
     {
       label: i18n.__('Window'),
-      role: 'window'
+      role: 'window',
+      submenu: [
+        {label: i18n.__('Minimize'),role: 'minimize'},
+        {label: i18n.__('Quit'),role: 'close'}
+      ]
     }
   ]
 
@@ -80,7 +96,7 @@ function createMenu (){
       submenu: [
         {label: i18n.__('About'),role: 'about'},
         {type: 'separator'},
-        {label: i18n.__('Disconnect account'), click: function click() {clearAppCache(); }},
+        {label: i18n.__('Disconnect account'), click () { clearAppCache(); }},
         {type: 'separator'},
         {label: i18n.__('Hide')+' '+name,role: 'hide'},
         {label: i18n.__('Hide others'),role: 'hideothers'},
@@ -89,9 +105,7 @@ function createMenu (){
         {label: i18n.__('Quit'),role: 'quit'}
       ]
     })
-
-    template[1].submenu.push()
-
+    
     template[2].submenu = [
       {label: i18n.__('Minimize'),accelerator: 'CmdOrCtrl+M',role: 'minimize'},
       {label: i18n.__('Zoom'),role: 'zoom'}
@@ -126,9 +140,7 @@ function countMessages(title) {
 //When the app is ready
 app.on('ready', function(){
   createWindow();
-  if (process.platform === 'darwin') {
-    createMenu();
-  }
+  createMenu();
 });
 
 //Full closure of the app
