@@ -10,7 +10,7 @@
  "Minimize": "Minimieren",
  "Zoom": "Zoomen",
  "About": "Über",
- "Disconnect account": "Disconnect account",
+ "Disconnect account": "Abmelden",
  "Hide": "Ausblenden",
  "Hide others": "Andere ausblenden",
  "Unhide": "Alle einblenden",
