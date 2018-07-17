@@ -21,7 +21,8 @@ function createWindow () {
     width: mainWindowState.width,
     height: mainWindowState.height,
     title: app.getName(),
-    icon: path.join(__dirname, '/icons/png/512.png')
+    icon: path.join(__dirname, '/icons/png/512.png'),
+    autoHideMenuBar: true,
   }
 
   mainWindow = new BrowserWindow(windowOptions)
@@ -44,7 +45,7 @@ function createWindow () {
       }
     });
   }
-  // On windows we do a taskbar flash, to inform the user something new happened. Badge on windows seems to not be supported bei electron atm.
+  // On windows we do a taskbar flash, to inform the user something new happened. Badges on windows currently not supported bei electron.
   if (process.platform === 'win32') {
     //mainWindow.once('focus', function () { mainWindow.flashFrame(false); });
     mainWindow.on('page-title-updated', function (e, title) {
