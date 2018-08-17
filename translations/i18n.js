@@ -1,10 +1,9 @@
 //Constants
 const path = require('path')
-const electron = require('electron')
+const { app } = require('electron')
 const fs = require('fs');
 
 let loadedLanguage;
-let app = electron.app;
 
 module.exports = i18n;
 

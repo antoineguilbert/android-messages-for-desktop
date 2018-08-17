@@ -1,11 +1,19 @@
+const { appId } = require('./package.json');
+const { isMac, isWindows } = require('./environment');
+const appIndicator = require('./appIndicator');
+
 //Constants
-const electron = require('electron');
+const {app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const url = require('url');
 const windowStateKeeper = require('electron-window-state');
-const {app, BrowserWindow, Menu } = electron;
 
 let mainWindow
+
+// Set App ID for Windows
+if (isWindows) {
+  app.setAppUserModelId(appId);
+}
 
 //Creating the window
 function createWindow () {
@@ -34,33 +42,12 @@ function createWindow () {
    slashes: true
   }))
 
-  //When a SMS arrived in the app, change the badge
-  if (process.platform === 'darwin') {
-    mainWindow.on('page-title-updated', function (e, title) {
-      var messages = countMessages(title);
-      if (messages) {
-        app.dock.setBadge(messages);
-      } else {
-        app.dock.setBadge('');
-      }
-    });
-  }
-  // On windows we do a taskbar flash, to inform the user something new happened. Badges on windows currently not supported bei electron.
-  if (process.platform === 'win32') {
-    //mainWindow.once('focus', function () { mainWindow.flashFrame(false); });
-    mainWindow.on('page-title-updated', function (e, title) {
-      var messages = countMessages(title);
-      if (messages) {
-        mainWindow.flashFrame(true);
-      } else {
-        mainWindow.flashFrame(false);
-      }
-    });
-  }
+  // Initialize appIndicator
+  appIndicator(mainWindow);
 
   mainWindow.on('closed', () => {
    mainWindow = null
- });
+  });
 
  mainWindowState.manage(mainWindow);
 }
@@ -90,7 +77,7 @@ function createMenu (){
     }
   ]
 
-  if (process.platform === 'darwin') {
+  if (isMac) {
     const name = app.getName()
     template.unshift({
       label: name,
@@ -131,13 +118,6 @@ function clearAppCache() {
   });
 };
 
-//Fonction to get the number of notifications
-function countMessages(title) {
-  var itemCountRegex = /[([{]([\d.,]*)\+?[}\])]/;
-  var match = itemCountRegex.exec(title);
-  return match ? match[1] : undefined;
-}
-
 //When the app is ready
 app.on('ready', function(){
   createWindow();
@@ -146,7 +126,7 @@ app.on('ready', function(){
 
 //Full closure of the app
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
+  if (isMac) {
     app.quit()
   }
 })
