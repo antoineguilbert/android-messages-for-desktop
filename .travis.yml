@@ -21,7 +21,7 @@ addons:
             - libgnome-keyring-dev
             - icnsutils
 install:
-    - 'nvm install 9'
+    - 'nvm install 10'
     - 'curl -o- -L https://yarnpkg.com/install.sh | bash'
     - 'source ~/.bashrc'
     - 'npm install -g xvfb-maybe'
