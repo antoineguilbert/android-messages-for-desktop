@@ -28,7 +28,7 @@ function createWindow () {
   //mainWindow.webContents.openDevTools();
 
   mainWindow.loadURL(url.format({
-   pathname: path.join('messages.android.com'),
+   pathname: path.join('messages.google.com/web'),
    protocol: 'https:',
    slashes: true
   }))
@@ -108,7 +108,7 @@ function clearAppCache() {
   session.clearStorageData(function () {
     session.clearCache(function () {
       mainWindow.loadURL(url.format({
-       pathname: path.join('messages.android.com'),
+       pathname: path.join('messages.google.com/web'),
        protocol: 'https:',
        slashes: true
       }))
