@@ -36,6 +36,11 @@ function createWindow () {
    slashes: true
   }))
 
+  mainWindow.webContents.on('new-window', function(e, url) {
+    e.preventDefault();
+    electron.shell.openExternal(url);
+  })
+
   //When a SMS arrived in the app, change the badge
   if (process.platform === 'darwin') {
     mainWindow.on('page-title-updated', function (e, title) {
