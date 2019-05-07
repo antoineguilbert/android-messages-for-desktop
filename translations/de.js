@@ -14,5 +14,15 @@
  "Hide": "Ausblenden",
  "Hide others": "Andere ausblenden",
  "Unhide": "Alle einblenden",
- "Quit": "Beenden"
+ "Quit": "Beenden",
+ "Update": "Update",
+ "FoundUpdate": "Searching update",
+ "UpdateFounded": "Update founded, do you want to download it ?",
+ "Yes": "Yes",
+ "No": "No",
+ "DownloadInBackground": "Download in background",
+ "NoUpdate": "No update available",
+ "NoUpdateAvailable": "Current version is up-to-date",
+ "Downloading": "Downloading ...",
+ "UpdateDownloaded": "Updates downloaded, application will be quit for update..."
 }

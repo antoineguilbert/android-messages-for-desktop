@@ -14,5 +14,15 @@
  "Hide": "Masquer",
  "Hide others": "Masquer les autres",
  "Unhide": "Tout afficher",
- "Quit": "Quitter"
+ "Quit": "Quitter",
+ "Update": "Mise à jour",
+ "FoundUpdate": "Recherche de mise à jour",
+ "UpdateFounded": "Mise à jour disponible, voulez-vous la télécharger ?",
+ "Yes": "Oui",
+ "No": "Non",
+ "DownloadInBackground": "Téléchargement en fond",
+ "NoUpdate": "Aucune mise à jour",
+ "NoUpdateAvailable": "La version actuelle est la plus récente",
+ "Downloading": "Téléchargement en cours ...",
+ "UpdateDownloaded": "Mise à jour télécharger, l'application va se fermer durant la mise à jour..."
 }
