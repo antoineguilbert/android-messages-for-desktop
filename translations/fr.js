@@ -14,5 +14,6 @@
  "Hide": "Masquer",
  "Hide others": "Masquer les autres",
  "Unhide": "Tout afficher",
- "Quit": "Quitter"
+ "Quit": "Quitter",
+ "Settings": "Paramètres"
 }
