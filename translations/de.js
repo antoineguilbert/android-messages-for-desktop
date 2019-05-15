@@ -14,5 +14,6 @@
  "Hide": "Ausblenden",
  "Hide others": "Andere ausblenden",
  "Unhide": "Alle einblenden",
- "Quit": "Beenden"
+ "Quit": "Beenden",
+ "Settings": "Settings"
 }
