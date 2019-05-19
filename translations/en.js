@@ -14,5 +14,6 @@
  "Hide": "Hide",
  "Hide others": "Hide others",
  "Unhide": "Unhide",
- "Quit": "Quit"
+ "Quit": "Quit",
+ "Settings": "Settings"
 }
