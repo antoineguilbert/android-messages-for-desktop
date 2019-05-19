@@ -15,6 +15,7 @@
  "Hide others": "Hide others",
  "Unhide": "Unhide",
  "Quit": "Quit",
+ "Settings": "Settings",
  "Update": "Update",
  "FoundUpdate": "Searching update",
  "UpdateFounded": "Update founded, do you want to download it ?",

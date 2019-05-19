@@ -79,7 +79,18 @@ function createMenu (){
       {label: i18n.__('Paste'),role: 'paste'},
       {label: i18n.__('Select all'),role: 'selectall'},
       {type: 'separator'},
+      {label: i18n.__('Settings'), accelerator: 'CmdOrCtrl+S',click: function click(){ 
+        mainWindow.loadURL(url.format({
+          pathname: path.join('messages.google.com/web/settings'),
+          protocol: 'https:',
+          slashes: true
+         }));
+      }},
+      {type: 'separator'},
       {label: i18n.__('Reload'),accelerator: 'CmdOrCtrl+R',click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}},
+      {label: i18n.__('Disconnect account'),accelerator: 'CmdOrCtrl+D', click: function click() {clearAppCache(); }},
+      {type: 'separator'},
+      {label: i18n.__('Quit'),role: 'quit'}
       ]
     },
     {
@@ -90,7 +101,8 @@ function createMenu (){
       label: '?',
       submenu: [
         {label: i18n.__('About'),role: 'about'},
-        {label: i18n.__('Update'), click: function click() { manualUpdate = true; autoUpdater.checkForUpdates(); }}
+        {label: i18n.__('Update'), click: function click() { manualUpdate = true; autoUpdater.checkForUpdates(); }},
+        { role: 'toggledevtools' },
       ]
     }
   ]
@@ -103,7 +115,14 @@ function createMenu (){
         {label: i18n.__('About'),role: 'about'},
         //{label: i18n.__('Update'), click: function click() { manualUpdate = true; autoUpdater.checkForUpdates(); }},
         {type: 'separator'},
-        {label: i18n.__('Disconnect account'), click: function click() {clearAppCache(); }},
+        {label: i18n.__('Settings'), accelerator: 'CmdOrCtrl+S',click: function click(){ 
+          mainWindow.loadURL(url.format({
+            pathname: path.join('messages.google.com/web/settings'),
+            protocol: 'https:',
+            slashes: true
+           }));
+        }},
+        {label: i18n.__('Disconnect account'),accelerator: 'CmdOrCtrl+D', click: function click() {clearAppCache(); }},
         {type: 'separator'},
         {label: i18n.__('Hide')+' '+name,role: 'hide'},
         {label: i18n.__('Hide others'),role: 'hideothers'},
@@ -117,7 +136,9 @@ function createMenu (){
 
     template[2].submenu = [
       {label: i18n.__('Minimize'),accelerator: 'CmdOrCtrl+M',role: 'minimize'},
-      {label: i18n.__('Zoom'),role: 'zoom'}
+      {label: i18n.__('Zoom'),role: 'zoom'},
+      {type: 'separator'},
+      { role: 'toggledevtools' }
     ]
   }
 
@@ -149,8 +170,10 @@ function countMessages(title) {
 //When the app is ready
 app.on('ready', function(){
   createWindow();
-  if (process.platform === 'darwin') {
-    createMenu();
+  createMenu();
+  if( process.platform === 'win32') {
+    mainWindow.setMenuBarVisibility(false);
+    mainWindow.setAutoHideMenuBar(true);
   }
   
   autoUpdater.checkForUpdates();

@@ -15,6 +15,7 @@
  "Hide others": "Masquer les autres",
  "Unhide": "Tout afficher",
  "Quit": "Quitter",
+ "Settings": "Paramètres",
  "Update": "Mise à jour",
  "FoundUpdate": "Recherche de mise à jour",
  "UpdateFounded": "Mise à jour disponible, voulez-vous la télécharger ?",

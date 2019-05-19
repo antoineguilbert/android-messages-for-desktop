@@ -15,6 +15,7 @@
  "Hide others": "Andere ausblenden",
  "Unhide": "Alle einblenden",
  "Quit": "Beenden",
+ "Settings": "Settings",
  "Update": "Update",
  "FoundUpdate": "Searching update",
  "UpdateFounded": "Update founded, do you want to download it ?",
