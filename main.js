@@ -152,10 +152,8 @@ app.on('ready', function(){
   if (process.platform === 'darwin') {
     createMenu();
   }
-  // Disable MacOS update while app is not signed with Apple Dev Certificate
-  if (process.platform !== 'darwin') {
-    autoUpdater.checkForUpdates();
-  }
+  
+  autoUpdater.checkForUpdates();
 });
 
 //Full closure of the app
@@ -185,7 +183,11 @@ autoUpdater.on('update-available', function () {
     buttons: [i18n.__('Yes')+' ('+i18n.__('DownloadInBackground')+')', i18n.__('No')]
   }, (buttonIndex) => {
     if (buttonIndex === 0) {
-      autoUpdater.downloadUpdate()
+      if(process.platform === 'darwin') {
+        electron.shell.openExternal('https://github.com/Android-Messages-For-Desktop/android-messages-for-desktop/releases/latest');
+      } else {
+        autoUpdater.downloadUpdate()
+      }
     }
   })
 })
