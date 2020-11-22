@@ -3,12 +3,21 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 const windowStateKeeper = require('electron-window-state');
-const {app, BrowserWindow, Menu, MenuItem} = electron;
+const { app, BrowserWindow, Menu, MenuItem, dialog } = electron;
+const { autoUpdater } = require('electron-updater');
 
 let mainWindow
+let i18n
+
+let manualUpdate
+
+autoUpdater.autoDownload = false
 
 //Creating the window
 function createWindow () {
+
+  i18n = new(require('./translations/i18n'));
+  manualUpdate = false
 
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
@@ -62,8 +71,6 @@ function createWindow () {
 
 //Creating the menu
 function createMenu (){
-  var i18n = new(require('./translations/i18n'));
-
   const template = [
     {
     label: i18n.__('Edit'),
@@ -93,6 +100,8 @@ function createMenu (){
     {
       label: '?',
       submenu: [
+        {label: i18n.__('About'),role: 'about'},
+        {label: i18n.__('Update'), click: function click() { manualUpdate = true; autoUpdater.checkForUpdates(); }},
         { role: 'toggledevtools' },
       ]
     }
@@ -104,6 +113,7 @@ function createMenu (){
       label: name,
       submenu: [
         {label: i18n.__('About'),role: 'about'},
+        //{label: i18n.__('Update'), click: function click() { manualUpdate = true; autoUpdater.checkForUpdates(); }},
         {type: 'separator'},
         {label: i18n.__('Settings'), accelerator: 'CmdOrCtrl+S',click: function click(){ 
           mainWindow.loadURL(url.format({
@@ -165,6 +175,8 @@ app.on('ready', function(){
     mainWindow.setMenuBarVisibility(false);
     mainWindow.setAutoHideMenuBar(true);
   }
+  
+  autoUpdater.checkForUpdates();
 });
 
 //Full closure of the app
@@ -179,4 +191,44 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+/// Auto Updater
+autoUpdater.on('error', function (error) {
+  dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+})
+
+autoUpdater.on('update-available', function () {
+  dialog.showMessageBox({
+    type: 'info',
+    title: i18n.__('FoundUpdate'),
+    message: i18n.__('UpdateFounded'),
+    buttons: [i18n.__('Yes')+' ('+i18n.__('DownloadInBackground')+')', i18n.__('No')]
+  }, (buttonIndex) => {
+    if (buttonIndex === 0) {
+      if(process.platform === 'darwin') {
+        electron.shell.openExternal('https://github.com/Android-Messages-For-Desktop/android-messages-for-desktop/releases/latest');
+      } else {
+        autoUpdater.downloadUpdate()
+      }
+    }
+  })
+})
+
+autoUpdater.on('update-not-available', function () {
+  if(manualUpdate === true) {
+    dialog.showMessageBox({
+      title: i18n.__('NoUpdate'),
+      message: i18n.__('NoUpdateAvailable')
+    })
+  }
+})
+
+autoUpdater.on('update-downloaded', function () {
+  dialog.showMessageBox({
+    title: i18n.__('Update'),
+    message: i18n.__('UpdateDownloaded')
+  }, function () {
+    setImmediate(() => autoUpdater.quitAndInstall())
+  })
 })
