@@ -21,7 +21,10 @@
     "appId": "com.antoineguilbert.android-messages",
     "mac": {
       "category": "public.app-category.social-networking",
-      "target" : { "target": "dir", "arch": "arm64" }
+      "target": {
+        "target": "dir",
+        "arch": "arm64"
+      }
     },
     "win": {
       "target": "nsis"
@@ -34,7 +37,11 @@
       "target": "AppImage"
     },
     "publish": [
-      "github"
+      {
+        "provider": "github",
+        "owner": "Android-Messages-For-Desktop",
+        "repo": "android-messages-for-desktop"
+      }
     ]
   },
   "devDependencies": {
