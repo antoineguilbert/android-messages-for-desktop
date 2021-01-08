@@ -1,15 +1,8 @@
 osx_image: xcode12u
-sudo: required
+os: osx
 dist: trusty
-language: c
-matrix:
-    include:
-        -
-            os: osx
-        #-
-        #   os: linux
-        #    env: 'CC=clang CXX=clang++ npm_config_clang=1'
-        #    compiler: clang
+language: generic
+
 cache:
     directories:
         - node_modules
@@ -28,7 +21,3 @@ install:
     - yarn
 script:
     - 'yarn run dist'
-#branches:
-#    only:
-#	- master
-#	- feature/ci
