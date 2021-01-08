@@ -1,6 +1,6 @@
 osx_image: xcode12u
 os: osx
-language: python
+language: nodejs
 
 cache:
     directories:
@@ -23,8 +23,7 @@ script:
 
 deploy:
   provider: releases
-  api_key: $GH_TOKEN
-  file: "FILE TO UPLOAD"
+  token: $GH_TOKEN
   skip_cleanup: true
   draft: true
   file:
