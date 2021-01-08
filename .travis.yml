@@ -7,10 +7,10 @@ matrix:
         -
             os: osx
             osx_image: xcode12u
-        -
-            os: linux
-            env: 'CC=clang CXX=clang++ npm_config_clang=1'
-            compiler: clang
+        #-
+        #   os: linux
+        #    env: 'CC=clang CXX=clang++ npm_config_clang=1'
+        #    compiler: clang
 cache:
     directories:
         - node_modules
