@@ -79,18 +79,7 @@ function createMenu (){
       {label: i18n.__('Paste'),role: 'paste'},
       {label: i18n.__('Select all'),role: 'selectall'},
       {type: 'separator'},
-      {label: i18n.__('Settings'), accelerator: 'CmdOrCtrl+S',click: function click(){ 
-        mainWindow.loadURL(url.format({
-          pathname: path.join('messages.google.com/web/settings'),
-          protocol: 'https:',
-          slashes: true
-         }));
-      }},
-      {type: 'separator'},
       {label: i18n.__('Reload'),accelerator: 'CmdOrCtrl+R',click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}},
-      {label: i18n.__('Disconnect account'),accelerator: 'CmdOrCtrl+D', click: function click() {clearAppCache(); }},
-      {type: 'separator'},
-      {label: i18n.__('Quit'),role: 'quit'}
       ]
     },
     {
