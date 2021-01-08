@@ -4,6 +4,9 @@ version: 0.1.{build}
 #   only:
 #     - master
 
+image: Visual Studio 2019
+image: macOS
+image: Ubuntu
 platform:
   - x64
 
