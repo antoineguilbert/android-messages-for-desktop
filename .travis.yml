@@ -1,6 +1,6 @@
 osx_image: xcode12u
 os: osx
-language: nodejs
+language: node_js
 
 cache:
     directories:
@@ -24,7 +24,6 @@ script:
 deploy:
   provider: releases
   token: $GH_TOKEN
-  skip_cleanup: true
   draft: true
   file:
-    - "dist/mac-arm64/*"
+    - "dist/*"
