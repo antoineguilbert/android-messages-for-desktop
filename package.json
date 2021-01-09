@@ -22,9 +22,6 @@
     "mac": {
       "category": "public.app-category.social-networking"
     },
-    "dmg": {
-			"icon": true
-		},
     "win": {
       "target": "nsis"
     },
