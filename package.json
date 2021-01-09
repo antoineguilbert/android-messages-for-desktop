@@ -6,12 +6,9 @@
   "description": "Just a simple project made with electron JS to show Android Messages from Google in a app with notifications.",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
-		"build": "electron-builder --mac --windows --linux",
-		"release": "electron-builder --mac --windows --linux --publish always"
+		"build": "electron-builder --mac --windows",
+		"release": "electron-builder --mac --windows --publish always"
   },
   "repository": {
     "type": "git",
