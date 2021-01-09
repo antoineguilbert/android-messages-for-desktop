@@ -2,13 +2,16 @@
   "name": "android-messages",
   "productName": "Android Messages",
   "appId": "com.antoineguilbert.android-messages",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Just a simple project made with electron JS to show Android Messages from Google in a app with notifications.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+		"build": "electron-builder --mac --windows --linux",
+		"release": "electron-builder --mac --windows --linux --publish always"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,9 @@
         "arch": "arm64"
       }
     },
+    "dmg": {
+			"icon": true
+		},
     "win": {
       "target": "nsis"
     },
