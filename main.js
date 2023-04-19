@@ -216,7 +216,7 @@ autoUpdater.on('update-available', function () {
   }, (buttonIndex) => {
     if (buttonIndex === 0) {
       if(process.platform === 'darwin') {
-        electron.shell.openExternal('https://github.com/Android-Messages-For-Desktop/android-messages-for-desktop/releases/latest');
+        electron.shell.openExternal('https://github.com/antoineguilbert/android-messages-for-desktop/releases/latest');
       } else {
         autoUpdater.downloadUpdate()
       }

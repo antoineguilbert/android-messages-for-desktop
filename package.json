@@ -12,11 +12,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Android-Messages-For-Desktop/android-messages-for-desktop.git"
+    "url": "git+https://github.com/antoineguilbert/android-messages-for-desktop.git"
   },
   "author": "Antoine Guilbert",
   "license": "MIT",
-  "homepage": "https://github.com/Android-Messages-For-Desktop/android-messages-for-desktop/blob/master/README.md",
+  "homepage": "https://github.com/antoineguilbert/android-messages-for-desktop/blob/master/README.md",
   "build": {
     "appId": "com.antoineguilbert.android-messages",
     "mac": {
