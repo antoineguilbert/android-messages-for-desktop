@@ -3,7 +3,7 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 const windowStateKeeper = require('electron-window-state');
-const { app, BrowserWindow, Menu, MenuItem, dialog } = electron;
+const { app, BrowserWindow, Menu, MenuItem, dialog, nativeTheme } = electron;
 const { autoUpdater } = require('electron-updater');
 
 let mainWindow
@@ -39,6 +39,20 @@ function createWindow () {
   mainWindow = new BrowserWindow(windowOptions)
   //mainWindow.webContents.openDevTools();
 
+  // set user agent to potentially make google fi work
+  const userAgent =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0";
+
+mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
+  {
+    urls: ["https://accounts.google.com/*"],
+  },
+  ({ requestHeaders }, callback) =>
+    callback({
+      requestHeaders: { ...requestHeaders, "User-Agent": userAgent },
+    })
+);
+
   mainWindow.loadURL(url.format({
    pathname: path.join('messages.google.com/web'),
    protocol: 'https:',
@@ -49,6 +63,12 @@ function createWindow () {
     e.preventDefault();
     electron.shell.openExternal(url);
   })
+
+  nativeTheme.on('updated', () => {
+      mainWindow.webContents.send(EVENT_UPDATE_USER_SETTING, {
+        useDarkMode: nativeTheme.shouldUseDarkColors
+      });
+  });
 
   //When a SMS arrived in the app, change the badge
   if (process.platform === 'darwin') {

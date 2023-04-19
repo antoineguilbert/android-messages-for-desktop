@@ -2,7 +2,7 @@
   "name": "android-messages",
   "productName": "Android Messages",
   "appId": "com.antoineguilbert.android-messages",
-  "version": "1.1.7",
+  "version": "2.0.0",
   "description": "Just a simple project made with electron JS to show Android Messages from Google in a app with notifications.",
   "main": "main.js",
   "scripts": {
@@ -20,7 +20,15 @@
   "build": {
     "appId": "com.antoineguilbert.android-messages",
     "mac": {
-      "category": "public.app-category.social-networking"
+      "category": "public.app-category.social-networking",
+      "target": [
+        {
+          "target": "mas",
+          "arch": [
+            "universal"
+          ]
+        }
+      ]
     },
     "win": {
       "target": "nsis"
@@ -41,13 +49,14 @@
     ]
   },
   "devDependencies": {
-    "electron": "^11.1.1",
-    "electron-builder": "^22.9.1"
+    "electron": "^24.1.2",
+    "electron-builder": "^24.2.1"
   },
   "dependencies": {
-    "electron-context-menu": "^2.4.0",
-    "electron-updater": "^4.0.6",
+    "electron-context-menu": "^3.1.1",
+    "electron-updater": "^5.3.0",
     "electron-window-state": "^5.0.3",
-    "i18n": "^0.13.2"
+    "i18n": "^0.15.1",
+    "latest-version": "^7.0.0"
   }
 }
