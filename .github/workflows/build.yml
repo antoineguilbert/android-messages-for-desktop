@@ -11,7 +11,7 @@ jobs:
         os: [macos-latest, windows-latest]
 
     steps:
-          - name: Check out Git repository
+      - name: Check out Git repository
         uses: actions/checkout@v3
 
       - name: Install Node.js, NPM and Yarn
