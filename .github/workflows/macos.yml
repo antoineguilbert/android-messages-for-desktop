@@ -1,4 +1,4 @@
-name: Build/release
+name: macOS
 
 on: push
 
@@ -25,13 +25,6 @@ jobs:
         run: |
           npm run build
           npx electron-builder build --mac --publish always
-
-      #- name: Build and publish for Windows
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.github_token }}
-      #  run: |
-      #    npm run build
-      #    npx electron-builder build --windows --publish always
 
       - name: Create Release
         uses: actions/create-release@v1

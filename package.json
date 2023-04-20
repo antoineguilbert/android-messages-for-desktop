@@ -24,7 +24,7 @@
       "category": "public.app-category.social-networking",
       "target": [
         {
-          "target": "mas",
+          "target": "dmg",
           "arch": [
             "universal"
           ]
@@ -38,13 +38,10 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },
-    "linux": {
-      "target": "AppImage"
-    },
     "publish": [
       {
         "provider": "github",
-        "owner": "Android-Messages-For-Desktop",
+        "owner": "antoineguilbert",
         "repo": "android-messages-for-desktop"
       }
     ]
