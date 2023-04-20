@@ -11,21 +11,30 @@ jobs:
         os: [macos-latest, windows-latest]
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
-      - name: Install Node.js, NPM and Yarn
-        uses: actions/setup-node@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: 16
 
-      - name: Build/release Electron app
-        uses: typerefinery-ai/action-electron-builder@v1
-        with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install electron-builder --save-dev
 
-          # If the commit is tagged with a version (e.g. "v1.0.0"),
-          # release the app after building
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+      - name: Build and publish for Mac
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        run: |
+          npm run build
+          npx electron-builder build --mac --publish always
+        release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+
+      - name: Build and publish for Windows
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        run: |
+          npm run build
+          npx electron-builder build --windows --publish always
+        release: ${{ startsWith(github.ref, 'refs/tags/v') }}
