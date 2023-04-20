@@ -19,16 +19,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         run: |
           npm run build
-          npx electron-builder build --windows --publish always -c.win.verifyUpdateCodeSignature=false
-
-      - name: Create Release
-        uses: actions/create-release@v1
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: 'Automatic release from CI'
-          draft: true
-          prerelease: false
+          npx electron-builder build --windows --publish always

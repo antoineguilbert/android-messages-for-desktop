@@ -24,7 +24,6 @@
       "category": "public.app-category.social-networking",
       "target": [
         {
-          "target": "dmg",
           "arch": [
             "universal"
           ]
