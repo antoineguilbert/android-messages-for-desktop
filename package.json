@@ -8,6 +8,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
+    "build": "electron-builder",
     "dist": "electron-builder"
   },
   "repository": {
