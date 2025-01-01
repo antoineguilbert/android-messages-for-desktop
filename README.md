@@ -12,6 +12,12 @@ The AppImage file is not working!
 > You need to make it executable by running the following command: `chmod +x yourappimagefile.AppImage`
 You can then execute it
 
+## Support
+
+If you're enjoying using this app, buy me a coffe!
+
+<a href="https://www.buymeacoffee.com/antoineguilbert" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## Author
 
 **Antoine Guilbert** - [www.antoineguilbert.fr](https://www.antoineguilbert.fr)
