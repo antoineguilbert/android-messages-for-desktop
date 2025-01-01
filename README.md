@@ -14,7 +14,7 @@ You can then execute it
 
 ## Support
 
-If you're enjoying using this app, buy me a coffe!
+If you're enjoying using this app, buy me a coffee!
 
 <a href="https://www.buymeacoffee.com/antoineguilbert" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
