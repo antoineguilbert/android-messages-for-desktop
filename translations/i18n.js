@@ -9,10 +9,10 @@ let app = electron.app;
 module.exports = i18n;
 
 function i18n() {
-  if(fs.existsSync(path.join(__dirname, app.getLocale() + '.js'))) {
-    loadedLanguage = JSON.parse(fs.readFileSync(path.join(__dirname, app.getLocale() + '.js'), 'utf8'));
+  if(fs.existsSync(path.join(__dirname, app.getLocale() + '.json'))) {
+    loadedLanguage = JSON.parse(fs.readFileSync(path.join(__dirname, app.getLocale() + '.json'), 'utf8'));
   }else{
-    loadedLanguage = JSON.parse(fs.readFileSync(path.join(__dirname, 'en.js'), 'utf8'));
+    loadedLanguage = JSON.parse(fs.readFileSync(path.join(__dirname, 'en.json'), 'utf8'));
   }
 }
 
