@@ -1,9 +1,32 @@
-# Exclude DS Store
+# OS
 .DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Exclude modules node
+# Dependencies
 node_modules/
 
-yarn\.lock
-dist/*
+# Lockfiles (alt package managers)
+yarn.lock
+
+# Logs
 *.log
+
+# Build output
+dist/
+release/
+out/
+
+# Env / secrets
+.env
+.env.local
+
+# Caches
+.npm/
+.cache/
+
+# IDE / editors
+.vscode/
+.idea/
+*.swp

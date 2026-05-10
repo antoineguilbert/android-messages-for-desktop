@@ -204,7 +204,9 @@ app.on('activate', function () {
 
 /// Auto Updater
 autoUpdater.on('error', function (error) {
-  dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+  if (manualUpdate === true) {
+    dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+  }
 })
 
 autoUpdater.on('update-available', function () {

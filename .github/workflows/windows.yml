@@ -7,16 +7,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build and publish for Windows
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
-        run: |
-          npm run build
-          npx electron-builder build --windows --publish always
+        run: npx electron-builder build --windows --publish always
