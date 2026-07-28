@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "electron": "^42.0.1",
-    "electron-builder": "^26.8.1"
+    "electron-builder": "^26.15.3"
   },
   "dependencies": {
     "electron-context-menu": "^4.1.2",
