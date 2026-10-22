@@ -24,6 +24,7 @@
 - Standalone desktop app for Google Messages
 - Native unread badge on macOS dock
 - Built-in auto-updater
+- Right-click menu (copy, paste, links, images)
 - Multilingual UI (English, French, German)
 - Universal macOS build (Intel + Apple Silicon)
 
@@ -31,12 +32,12 @@
 
 Grab the latest installer from the [Releases page](https://github.com/antoineguilbert/android-messages-for-desktop/releases/latest):
 
-- **macOS** — `.dmg` (universal)
-- **Windows** — `.exe` installer
+- **macOS** — `.dmg` (universal, macOS 13 Ventura or later)
+- **Windows** — `.exe` installer (64-bit, Windows 10 or later)
 
 ## Development
 
-Requires Node.js 22+.
+Requires Node.js 24+.
 
 ```bash
 git clone https://github.com/antoineguilbert/android-messages-for-desktop.git

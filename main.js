@@ -3,7 +3,8 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 const windowStateKeeper = require('electron-window-state');
-const { app, BrowserWindow, Menu, MenuItem, dialog, nativeTheme } = electron;
+const contextMenu = require('electron-context-menu').default;
+const { app, BrowserWindow, Menu, MenuItem, dialog } = electron;
 const { autoUpdater } = require('electron-updater');
 
 let mainWindow
@@ -39,6 +40,17 @@ function createWindow () {
   mainWindow = new BrowserWindow(windowOptions)
   //mainWindow.webContents.openDevTools();
 
+  //Right-click menu (copy, paste, links, images...)
+  contextMenu({
+    window: mainWindow,
+    labels: {
+      cut: i18n.__('Cut'),
+      copy: i18n.__('Copy'),
+      paste: i18n.__('Paste'),
+      selectAll: i18n.__('Select all')
+    }
+  });
+
   // set user agent to potentially make google fi work
   const userAgent =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0";
@@ -59,16 +71,13 @@ mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
    slashes: true
   }))
 
-  mainWindow.webContents.on('new-window', function(e, url) {
-    e.preventDefault();
-    electron.shell.openExternal(url);
+  //Open links in the default browser
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    if (url.startsWith('https://') || url.startsWith('http://')) {
+      electron.shell.openExternal(url);
+    }
+    return { action: 'deny' };
   })
-
-  nativeTheme.on('updated', () => {
-      mainWindow.webContents.send(EVENT_UPDATE_USER_SETTING, {
-        useDarkMode: nativeTheme.shouldUseDarkColors
-      });
-  });
 
   //When a SMS arrived in the app, change the badge
   if (process.platform === 'darwin') {
@@ -158,15 +167,15 @@ function createMenu (){
 //Function to clear the cache app
 function clearAppCache() {
   var session = mainWindow.webContents.session;
-  session.clearStorageData(function () {
-    session.clearCache(function () {
+  session.clearStorageData()
+    .then(() => session.clearCache())
+    .then(() => {
       mainWindow.loadURL(url.format({
        pathname: path.join('messages.google.com/web'),
        protocol: 'https:',
        slashes: true
       }))
     });
-  });
 };
 
 //Fonction to get the number of notifications
@@ -215,8 +224,8 @@ autoUpdater.on('update-available', function () {
     title: i18n.__('FoundUpdate'),
     message: i18n.__('UpdateFounded'),
     buttons: [i18n.__('Yes')+' ('+i18n.__('DownloadInBackground')+')', i18n.__('No')]
-  }, (buttonIndex) => {
-    if (buttonIndex === 0) {
+  }).then(({ response }) => {
+    if (response === 0) {
       if(process.platform === 'darwin') {
         electron.shell.openExternal('https://github.com/antoineguilbert/android-messages-for-desktop/releases/latest');
       } else {
@@ -239,7 +248,7 @@ autoUpdater.on('update-downloaded', function () {
   dialog.showMessageBox({
     title: i18n.__('Update'),
     message: i18n.__('UpdateDownloaded')
-  }, function () {
+  }).then(() => {
     setImmediate(() => autoUpdater.quitAndInstall())
   })
 })
